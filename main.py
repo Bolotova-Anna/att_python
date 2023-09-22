@@ -46,6 +46,17 @@ def search_note_by_date(file):
                         print('')
         else:
             print("в этот день заметок не было")
+def delete_note(file):
+    with open(file, 'r', encoding='utf-8') as f:
+        data = json.load(open(file))
+        st = input("введите id заметки, которую хотите удалить: ")
+        for i in range(len(data)):
+            if data[i]['id'] ==st:
+                del data[i]
+                break
+        with open(file, 'w', encoding ='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)  
+
 
 
  
@@ -67,6 +78,9 @@ if(comand==3):
     show_all_notes(work_file)
 if(comand==4):
     search_note_by_date(work_file)
+if(comand==5):
+    delete_note(work_file)
+
 
 
 
