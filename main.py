@@ -28,6 +28,25 @@ def show_all_notes(file):
             print('core : '  + t['core'])
             print('date_of_creation: '  + t['date_of_creation'])
             print('')
+def search_note_by_date(file):
+    with open(file, 'r', encoding='utf-8') as f:
+        data = json.load(open(file))
+        st = input("введите через тире, без пробелов дату(год, месяц, число) для поиска заметки: ")
+        array =[]
+        for line in data:
+            array.append(line["date_of_creation"])
+        flag = st in array
+        if flag ==True:
+            for line in data:
+                    if st in line["date_of_creation"]:
+                        print('id : ' + line['id'])
+                        print('title: '  + line['title'])
+                        print('core : '  + line['core'])
+                        print('date_of_creation: '  + line['date_of_creation'])
+                        print('')
+        else:
+            print("в этот день заметок не было")
+
 
  
 work_file = 'notes.json'
@@ -46,5 +65,8 @@ if(comand==2):
     add_note(work_file)
 if(comand==3):
     show_all_notes(work_file)
+if(comand==4):
+    search_note_by_date(work_file)
+
 
 
