@@ -19,6 +19,16 @@ def add_note (file):
     data.append(note)
     with open(file, "w", encoding='utf8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
+def show_all_notes(file):
+    with open(file, 'r', encoding='utf-8') as rf:
+        data = json.load(open(file))
+        for t in data:
+            print('id : ' + t['id'])
+            print('title: '  + t['title'])
+            print('core : '  + t['core'])
+            print('date_of_creation: '  + t['date_of_creation'])
+            print('')
+
  
 work_file = 'notes.json'
 import json
@@ -34,4 +44,7 @@ if(comand==1):
     create_note_log(work_file)
 if(comand==2):
     add_note(work_file)
+if(comand==3):
+    show_all_notes(work_file)
+
 
